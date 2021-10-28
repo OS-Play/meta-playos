@@ -2,12 +2,22 @@
 # changes incompatibly
 POKY_BBLAYERS_CONF_VERSION = "2"
 
-BBPATH = "${TOPDIR}"
+
+
+BBPATH = "${TOPDIR}/"
 BBFILES ?= ""
 
 BBLAYERS ?= " \
   ##OEROOT##/meta \
-  ##OEROOT##/meta-poky \
-  ##OEROOT##/meta-yocto-bsp \
-  ##OEROOT##/meta-playos \
+  ##OEROOT##/../3rdparty/meta-meson \
+  ##OEROOT##/../3rdparty/meta-openembedded/meta-oe \
+  ##OEROOT##/../3rdparty/meta-openembedded/meta-multimedia \
+  ##OEROOT##/../3rdparty/meta-openembedded/meta-networking \
+  ##OEROOT##/../3rdparty/meta-openembedded/meta-python \
+  ##OEROOT##/../meta-bsp \
+  ##OEROOT##/../meta-library \
+  ##OEROOT##/../meta-services \
+  ##OEROOT##/../meta-apps \
+  ##OEROOT##/../meta-retroarch \
+  ##OEROOT##/../meta-playos \
   "

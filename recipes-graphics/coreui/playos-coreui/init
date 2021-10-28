@@ -1,0 +1,30 @@
+#!/sbin/openrc-run
+
+description="Start Play OS CoreUI"
+
+depend()
+{
+    after seatd udev
+    need localmount
+    keyword -coreui -wayland
+    provide wayland coreui
+}
+
+start_pre()
+{
+    [ -f "/etc/profile.d/sysenv.sh" ] && source /etc/profile.d/sysenv.sh
+}
+
+
+start_post() {
+    sleep 3
+    [ -x "$WALLPAPER" ] && $WALLPAPER &
+    [ -x "$PANEL" ] && $PANEL &
+}
+
+
+command="/usr/bin/coreui"
+command_args=" > /var/log/coreui.log 2>&1"
+command_background=true
+pidfile="/run/coreui.pid"
+supervisor=supervise-daemon

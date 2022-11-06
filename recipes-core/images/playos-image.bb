@@ -4,13 +4,11 @@ IMAGE_FEATURES += " ssh-server-openssh package-management splash hwcodecs"
 
 LICENSE = "MIT"
 
-PREFERRED_PROVIDER_android-tools-conf = "android-tools-conf-configfs"
-
 # Base
-IMAGE_INSTALL:append = "\
-    packagegroup-core-boot \
+IMAGE_INSTALL += "\
     packagegroup-core-full-cmdline \
     packagegroup-core-ssh-openssh \
+    packagegroup-playos-base \
     packagegroup-coreui \
     kernel-image \
     kernel-modules \
@@ -18,21 +16,19 @@ IMAGE_INSTALL:append = "\
     wpa-supplicant \
     wayland \
     android-tools-adbd \
-    openrc \
-    flutter-engine-bin \
     libexecinfo \
-    sysenv \
     networkmanager-nmcli \
     bluez5 \
+    ${@ bb.utils.contains('EXTRA_IMAGE_FEATURES', 'tools-profile', 'perf', '', d) } \
     "
 
 # Services
-IMAGE_INSTALL:append = "\
+IMAGE_INSTALL += "\
     rc-psplash \
     "
 
 # Apps
-IMAGE_INSTALL:append = "\
+IMAGE_INSTALL += "\
     packagegroup-retroarch \
     packagegroup-playos-libretro-cores \
     "

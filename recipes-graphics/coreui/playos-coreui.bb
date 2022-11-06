@@ -3,13 +3,14 @@ DESCRIPTION = "PlayOS GUI Environment base on wlroots."
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
-SRC_URI = "gitsm://git@git.playos.xyz/PlayOS/playos-coreui.git;protocol=ssh;branch=dev \
+SRC_URI = "gitsm://git@git.playos.xyz/PlayOS/playos-coreui.git;protocol=ssh;branch=master \
            file://init \
            file://coreui.cfg \
            "
 S = "${WORKDIR}/git"
 
-SRCREV = "b06793dcdb0fc528a4b07d6fee46190296d745cb"
+PV = "0.1.0"
+SRCREV = "54ef29874361b95900d70bbc6a11acb3d776bfb8"
 TARGET_CC_ARCH += "${LDFLAGS}"
 
 PACKAGES:append = "\
@@ -19,7 +20,8 @@ PACKAGES:append = "\
         "
 
 DEPENDS = "wlroots \
-        virtual/flutter-engine \
+        flutter-engine \
+        flutter-engine-tools-native \
         flutter-native \
         wayland-native \
         "
@@ -38,6 +40,13 @@ do_compile[depends] += "flutter-native:do_populate_sysroot"
 
 do_configure[network] = "1"
 do_compile[network] = "1"
+
+INSANE_SKIP:playos-panel = "ldflags"
+INSANE_SKIP:playos-settings = "ldflags"
+INSANE_SKIP:playos-wallpaper = "ldflags"
+
+export PLAYOS_FLUTTER_SDK_PATH
+PLAYOS_FLUTTER_SDK_PATH = "${WORKDIR}/recipe-sysroot-native/opt/flutter-engine"
 
 do_install:append() {
     install -d ${D}${sysconfdir}/init.d/

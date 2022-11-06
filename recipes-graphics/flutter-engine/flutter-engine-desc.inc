@@ -7,7 +7,3 @@ provides a modern, reactive framework, and a rich set of platform, layout and fo
 HOMEPAGE = "https://flutter.dev"
 LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://${THISDIR}/flutter-engine-bin/LICENSE;md5=537e0b52077bf0a616d0a0c8a79bc9d5"
-
-FILESEXTRAPATHS:append := ":${THISDIR}/flutter-engine-bin"
-
-PROVIDES += "virtual/flutter-engine"

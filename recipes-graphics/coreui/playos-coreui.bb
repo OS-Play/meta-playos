@@ -3,7 +3,7 @@ DESCRIPTION = "PlayOS GUI Environment base on wlroots."
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
-SRC_URI = "gitsm://git@git.playos.xyz/PlayOS/playos-coreui.git;protocol=ssh;branch=master \
+SRC_URI = "gitsm://github.com/OS-Play/playos-coreui.git;protocol=https;branch=master \
            file://init \
            file://coreui.cfg \
            "

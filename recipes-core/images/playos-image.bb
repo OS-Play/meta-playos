@@ -13,6 +13,7 @@ IMAGE_INSTALL += "\
     kernel-image \
     kernel-modules \
     kernel-devicetree \
+    packagegroup-playos-kmod-extra \
     wpa-supplicant \
     wayland \
     android-tools-adbd \

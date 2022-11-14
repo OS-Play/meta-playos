@@ -7,7 +7,6 @@ PACKAGES = "\
         "
 
 RDEPENDS:${PN} = "\
-        sysenv \
         sys-setup \
         ttf-wqy-zenhei \
         eudev \

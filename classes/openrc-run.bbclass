@@ -1,6 +1,6 @@
 RCUPDATEPN ?= "${PN}"
 
-RDEPENDS:${PN}:append = " openrc"
+RDEPENDS:append:${RCUPDATEPN} = " openrc"
 
 RCUPDATE = "rc-update"
 RCUPDATE:class-cross = ""

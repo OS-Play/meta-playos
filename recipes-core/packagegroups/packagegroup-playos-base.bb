@@ -13,4 +13,6 @@ RDEPENDS:${PN} = "\
         eudev \
         openrc \
         vim-tiny \
+        alsa-utils-alsactl \
+        pulseaudio-server \
         "

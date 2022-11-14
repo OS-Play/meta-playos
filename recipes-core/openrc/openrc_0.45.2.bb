@@ -9,8 +9,6 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=2307fb28847883ac2b0b110b1c1f36e0 \
 
 SRCREV = "3e5420b911922a14dd6b5cc3d2143dc30559caf4"
 SRC_URI = "git://github.com/OpenRC/openrc;protocol=https;branch=0.45.x \
-          file://volatiles \
-          file://conf.d \
           "
 inherit meson features_check update-alternatives
 
@@ -18,7 +16,7 @@ S = "${WORKDIR}/git"
 
 DEPENDS = " ${@bb.utils.contains('DISTRO_FEATURES', 'pam', 'libpam', '', d)}"
 RDEPENDS:${PN} = " perl"
-RPROVIDES:${PN} += "/sbin/openrc-run"
+RPROVIDES:${PN} += "/sbin/openrc-run ${@bb.utils.contains('DISTRO_FEATURES', 'usrmerge', '/usr/sbin/openrc-run', '', d)}"
 
 REQUIRED_DISTRO_FEATURES = "openrc"
 
@@ -54,15 +52,6 @@ do_install:append() {
 
     set_option rc_parallel YES
     set_option rc_logger YES
-
-    install -m644 -D ${WORKDIR}/conf.d/volatiles ${D}${sysconfdir}/conf.d/volatiles
-    install -m0755 -D ${WORKDIR}/volatiles ${D}${sysconfdir}/init.d/volatiles
-    ln -sf /etc/init.d/volatiles ${D}${sysconfdir}/runlevels/sysinit/volatiles
-
-    if [ ${@ oe.types.boolean('${VOLATILE_LOG_DIR}') } = True ]; then
-        sed -i 's/^\(VOLATILE_LOG_DIR\).*/\1=yes/g' \
-            ${D}${sysconfdir}/conf.d/volatiles
-    fi
 }
 
 FILES:${PN} = "${sysconfdir} ${base_libdir} ${base_sbindir} ${base_bindir} ${datadir}"

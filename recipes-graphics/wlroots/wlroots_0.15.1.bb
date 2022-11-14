@@ -13,8 +13,18 @@ TARGET_CC_ARCH += "${LDFLAGS}"
 
 inherit meson pkgconfig
 
-DEPENDS = "libinput libxkbcommon pixman cairo"
-DEPENDS += "wayland wayland-protocols virtual/egl udev seatd wayland-native"
+DEPENDS = "libinput \
+           libxkbcommon \
+           pixman \
+           cairo \
+           wayland \
+           wayland-protocols \
+           virtual/egl \
+           udev \
+           seatd \
+           wayland-native \
+           libdrm \
+           "
 RDEPENDS:${PN} = "xkeyboard-config"
 
 EXTRA_OEMESON:append = " --default-library=both \

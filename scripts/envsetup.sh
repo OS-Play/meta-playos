@@ -3,7 +3,7 @@
 if ! $(return >/dev/null 2>&1) ; then
     echo 'envsetup.sh: error: this script must be sourced'
     echo ''
-    echo 'Usage: source ./envsetup.sh'
+    echo 'Usage: source ./scripts/envsetup.sh'
     echo ''
     return
 fi
